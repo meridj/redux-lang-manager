@@ -11,19 +11,19 @@ import { connect } from 'react-redux';
 import './App.styl';
 
 /**
- * Datas
- */
-import { strings } from '../../datas';
-
-/**
  * Actions
  */
 import * as actions from '../../actions';
 
 /**
+ * Datas
+ */
+import { buttons } from '../../datas';
+
+/**
  * Components
  */
-import { Button } from '../../components';
+import { Button, Content } from '../../components';
 
 class App extends React.Component {
   handleClick = newlang => {
@@ -31,43 +31,30 @@ class App extends React.Component {
   };
 
   render() {
-    const { lang } = this.props;
-    console.log(lang);
+    const buttonForUpdateLang = (
+      <div className="btn-group">
+        {buttons.map(({ lang, className }) => (
+          <Button key={lang} className={className} onClick={this.handleClick}>
+            {lang}
+          </Button>
+        ))}
+      </div>
+    );
+
     return (
       <div className="app">
-        <div className="btn-group">
-          <Button onClick={this.handleClick} className="btn">
-            Fr
-          </Button>
-          <Button onClick={this.handleClick} className="btn">
-            En
-          </Button>
-          <Button onClick={this.handleClick} className="btn">
-            Es
-          </Button>
-        </div>
-        <div className="app-content">
-          <h1>{strings[lang].welcomeMessage}</h1>
-          <blockquote>
-            <p>{strings[lang].desc}</p>
-            <cite>Dan Abramov</cite>
-          </blockquote>
-        </div>
+        {buttonForUpdateLang}
+        <Content />
       </div>
     );
   }
 }
 
 App.propTypes = {
-  lang: PropTypes.string.isRequired,
   updateLang: PropTypes.func.isRequired
 };
 
-function mapStateToProps({ lang }) {
-  return { lang };
-}
-
 export default connect(
-  mapStateToProps,
+  null,
   actions
 )(App);
