@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import './Button.styl';
 
 const Button = ({ children, className, onClick }) => (
-  <button className={className} onClick={onClick}>
+  <button className={className} onClick={() => onClick(children)}>
     {children}
   </button>
 );

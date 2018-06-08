@@ -13,13 +13,20 @@ import './styles/reset.css';
 import './styles/index.styl';
 
 /**
+ * Reducers
+ */
+import reducers from './reducers';
+
+/**
  * Containers
  */
 import { App } from './containers';
 
+const store = createStore(reducers, {});
+
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Provider>
+    <Provider store={store}>
       <App />
     </Provider>,
     document.getElementById('root')
