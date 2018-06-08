@@ -1,8 +1,10 @@
 /**
- * Packages
+ * Npm imports
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
 /**
  * Styles
@@ -10,11 +12,16 @@ import ReactDOM from 'react-dom';
 import './styles/reset.css';
 import './styles/index.styl';
 
-const App = () => <h1>React-Parcel-Model</h1>;
+/**
+ * Containers
+ */
+import { App } from './containers';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const targetRootNode = document.getElementById('root');
-  const rootComponent = <App />;
-
-  ReactDOM.render(rootComponent, targetRootNode);
+  ReactDOM.render(
+    <Provider>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  );
 });
